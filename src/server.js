@@ -4,6 +4,12 @@ import netflixRouter from "./api/nextflix/index.js";
 import filesRouter from "./api/files/index.js";
 import { join } from "path";
 import cors from "cors";
+import {
+  badRequestHandler,
+  unauthorizedHandler,
+  notFoundHandler,
+  genericErrorHandler,
+} from "./errorsHandlers.js";
 
 const server = express();
 const urllist = [process.env.FE_DEV_URL];
@@ -29,6 +35,12 @@ server.use("/medias", netflixRouter);
 server.use("/medias", filesRouter);
 server.use(cors());
 server.use(express.static(publicFolderPath));
+
+server.use(badRequestHandler); // 400
+server.use(unauthorizedHandler); // 401
+server.use(notFoundHandler); // 404
+server.use(genericErrorHandler); // 500
+
 server.listen(port, () => {
   console.table(listEndpoints(server));
   console.log("this server is runing on port:", port);
