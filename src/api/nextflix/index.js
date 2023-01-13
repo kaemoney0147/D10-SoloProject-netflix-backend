@@ -21,9 +21,9 @@ netflixRouter.post("/", async (req, res, next) => {
 netflixRouter.get("/", async (req, res, next) => {
   try {
     const movieArray = await getMovies();
-    if (req.query && req.query.category) {
+    if (req.query && req.query.Title) {
       const filteredMovie = movieArray.filter(
-        (movie) => movie.type === req.query.type
+        movie.Title.toLowerCase().includes(req.query.Title.toLowerCase())
       );
       res.send(filteredMovie);
     } else {
