@@ -30,7 +30,7 @@ const corsOpts = {
 const publicFolderPath = join(process.cwd(), "./public");
 
 const port = process.env.PORT;
-server.use(express.json(corsOpts));
+server.use(express.json());
 server.use("/medias", netflixRouter);
 server.use("/medias", filesRouter);
 server.use(cors());
