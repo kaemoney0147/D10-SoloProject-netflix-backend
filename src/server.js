@@ -31,9 +31,9 @@ const publicFolderPath = join(process.cwd(), "./public");
 
 const port = process.env.PORT;
 server.use(express.json());
+server.use(cors(corsOpts));
 server.use("/medias", netflixRouter);
 server.use("/medias", filesRouter);
-server.use(cors());
 server.use(express.static(publicFolderPath));
 
 server.use(badRequestHandler); // 400
