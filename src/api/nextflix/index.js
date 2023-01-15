@@ -22,9 +22,12 @@ netflixRouter.get("/", async (req, res, next) => {
   try {
     const movieArray = await getMovies();
     if (req.query && req.query.Title) {
-      const filteredMovie = movieArray.filter(
-        movie.Title.toLowerCase().includes(req.query.Title.toLowerCase())
-      );
+      console.log(req.query);
+      const filteredMovie = movieArray.filter((movie) => {
+        return movie.Title.toLowerCase().includes(
+          req.query.Title.toLowerCase()
+        );
+      });
       res.send(filteredMovie);
     } else {
       res.send(movieArray);
