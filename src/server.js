@@ -12,7 +12,7 @@ import {
 } from "./errorsHandlers.js";
 
 const server = express();
-const urllist = [process.env.FE_DEV_URL];
+const urllist = [process.env.FE_DEV_URL, process.env.FE_PROD_URL];
 
 const corsOpts = {
   origin: (origin, corsNext) => {
